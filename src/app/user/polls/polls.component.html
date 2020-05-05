@@ -1,0 +1,9 @@
+<div class="main" fxLayout="column" fxLayoutAlign="center center">
+  <h2>Aktyvūs balsavimai</h2>
+  <div class="container" fxLayout="column" fxLayoutGap="16px">
+    <mat-card *ngFor="let poll of activePolls">
+      <mat-card-title>{{poll.question}}</mat-card-title>
+      <button [routerLink]="['./vote/' + poll.id]" mat-flat-button [disabled]="!poll.running" color="primary">Balsuoti</button>
+    </mat-card>
+  </div>
+</div>

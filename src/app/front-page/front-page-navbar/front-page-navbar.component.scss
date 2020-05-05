@@ -1,0 +1,27 @@
+@import '../../constants.scss';
+
+mat-toolbar {
+  height: 48px;
+  div {
+    height: 100%;
+    a {
+      height: 100%;
+      color: $text-color;
+      padding-left: 36px;
+      transition: all 0.25s ease-out;
+      span {
+        padding-right: 36px;
+        font-size: 15px;
+        text-transform: uppercase;
+      }
+      &:not(:last-child) {
+        span {
+          border-right: 1px solid #d7d7d7;
+        }
+      }
+      &:hover, &.active-link {
+        background-color: #d7d7d7;
+      }
+    }
+  }
+}

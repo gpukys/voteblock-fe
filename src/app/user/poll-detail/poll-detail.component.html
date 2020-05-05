@@ -1,0 +1,20 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="poll; else spinner">
+    <h1>{{poll.question}}</h1>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <button mat-flat-button
+              (click)="vote(true)"
+              class="positive">
+        Taip
+      </button>
+      <button mat-flat-button
+              (click)="vote(false)"
+              class="negative">
+        Ne
+      </button>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</div>

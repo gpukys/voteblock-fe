@@ -1,0 +1,29 @@
+@import '../constants.scss';
+
+mat-sidenav {
+  width: 200px;
+  .filler {
+    height: 120px;
+    background: $primary-color;
+    padding: 12px;
+    span {
+      color: white;
+    }
+  }
+  .navigation {
+    a {
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-color;
+    }
+    a.active {
+      color: $primary-color;
+      background: #673ab726;
+    }
+    a:hover {
+      background: #673ab726;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="main" fxLayout="column" fxLayoutAlign="center center">
+  <span class="title">Voteblock</span>
+  <div *ngIf="!loginInit" fxLayout="row" fxLayoutAlign="center">
+    <img src="./assets/smartid.png" alt="Smart Id" (click)="loginInit = true">
+  </div>
+  <form fxLayout="column" *ngIf="loginInit" [formGroup]="loginForm" (submit)="loginForm.valid && login()" fxLayoutGap="16px">
+    <mat-form-field> 
+      <input matInput placeholder="Asmens kodas" type="number" formControlName="personalCode">
+      <mat-error>Šis laukelis privalomas</mat-error>
+    </mat-form-field>
+    <button class="login">
+      Prisijungti
+    </button>
+  </form>
+</div>

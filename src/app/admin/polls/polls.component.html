@@ -1,0 +1,22 @@
+<div class="main" fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+    <h2>Aktyvūs balsavimai</h2>
+    <button mat-flat-button color="primary" [routerLink]="['./create']">+ Pridėti</button>
+  </div>
+
+  <div class="container" fxLayout="column" fxLayoutGap="16px">
+    <mat-card *ngFor="let poll of allPolls" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
+      <mat-card-title>{{poll.question}}</mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <div class="status {{poll.running ? 'active' : 'finished'}}">
+          {{poll.running ? 'Aktyvus' : 'Pasibaigęs'}}
+        </div>
+        <span class="stats">
+          Taip:{{poll.yes}}
+          Ne:{{poll.no}}
+        </span>
+      </div>
+      <button mat-flat-button [disabled]="!poll.running" (click)="stop(poll.id)" class="stop">Stabdyti</button>
+    </mat-card>
+  </div>
+</div>

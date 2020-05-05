@@ -1,0 +1,36 @@
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav mode="side" [opened]="true">
+      <div fxLayout="column">
+        <div class="filler" fxLayout="column" fxLayoutAlign="end center">
+          <span>Demo Admin</span>
+        </div>
+        <div class="navigation" fxLayout="column">
+          <a [routerLink]="['polls']" routerLinkActive="active">
+            <span>Aktyvūs balsavimai</span>
+          </a>
+          <a [routerLink]="['history']" routerLinkActive="active">
+            <span>Balsavimų istorija</span>
+          </a>
+          <a [routerLink]="['profile']" routerLinkActive="active">
+            <span>Mano duomenys</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a [routerLink]="['help']" routerLinkActive="active">
+            <span>Pagalba</span>
+          </a>
+          <a [routerLink]="['settings']" routerLinkActive="active">
+            <span>Nustatymai</span>
+          </a>
+          <a [routerLink]="['logout']" routerLinkActive="active">
+            <span>Atsijungti</span>
+          </a>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div fxFlexFill fxLayout="row">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,30 @@
+.main {
+  margin-top: 32px;
+}
+
+.title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 78px;
+  line-height: 78px;
+  margin-bottom: 32px;
+}
+
+img {
+  width: 150px;
+  transition: all 0.2s linear;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+button.login {
+  padding: 12px;
+  background: #00b5ac;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}

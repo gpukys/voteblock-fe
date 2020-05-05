@@ -1,0 +1,24 @@
+:host, .main {
+  width: 100%
+}
+
+.container {
+  width: 500px;
+}
+
+.status {
+  padding: 8px;
+  border-radius: 20px;
+  &.active {
+    background: rgb(27, 190, 6);
+    color: white;
+  }
+  &.finished {
+    background: rgb(189, 189, 189)
+  }
+}
+
+.stop {
+  background: #f13333;
+  color: white;
+}
