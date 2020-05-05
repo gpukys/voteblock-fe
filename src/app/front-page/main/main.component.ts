@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -13,26 +14,38 @@ export class MainComponent {
   loginForm: FormGroup;
 
   loginInit = false;
+  loading = false;
+  verificationCode;
 
   constructor(
     private fb: FormBuilder,
     private notification: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = fb.group({
-      personalCode: ['', Validators.required],
+      personalCode: ['', [Validators.required, Validators.pattern(/\d{11}/)]],
     });
   }
 
   login() {
+    this.loading = true;
     const personalCode = this.loginForm.get('personalCode');
-    if (personalCode.value === 'user') {
-      localStorage.setItem('role', 'user');
-      this.router.navigate(['user/polls']);
-    } else if (personalCode.value === 'admin') {
-      localStorage.setItem('role', 'admin');
-      this.router.navigate(['admin/polls']);
-    }
+
+    this.authService.initSmartIdLogin(personalCode.value).subscribe(res => {
+      this.verificationCode = res.verificationCode;
+      const interval = setInterval(() => this.authService.pollSmartIdSession(res.sessionId).subscribe(res => {
+        console.log(res);
+      }, err => {
+        clearInterval(interval);
+        this.notification.open('Įvyko klaida', undefined, {duration: 3000});
+        this.loading = false;
+        this.verificationCode = false;
+      }), 4000);
+    }, err => {
+      this.loading = false;
+      this.notification.open('Nerastas vartotojas', undefined, {duration: 3000});
+    });
   }
 
 }

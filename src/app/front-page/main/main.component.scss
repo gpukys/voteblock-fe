@@ -26,5 +26,18 @@ button.login {
   color: #fff;
   font-weight: bold;
   outline: none;
+  width: 200px;
   cursor: pointer;
+  &[disabled] {
+    background: #b8b8b8;
+    cursor: not-allowed;
+  }
+}
+
+.smart-id {
+  .code {
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 12px;
+  }
 }

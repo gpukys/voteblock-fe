@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     FrontPageModule,
     FlexLayoutModule,
     UserModule,
-    AdminModule
+    AdminModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

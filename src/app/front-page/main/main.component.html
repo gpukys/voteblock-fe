@@ -3,13 +3,23 @@
   <div *ngIf="!loginInit" fxLayout="row" fxLayoutAlign="center">
     <img src="./assets/smartid.png" alt="Smart Id" (click)="loginInit = true">
   </div>
-  <form fxLayout="column" *ngIf="loginInit" [formGroup]="loginForm" (submit)="loginForm.valid && login()" fxLayoutGap="16px">
-    <mat-form-field> 
+  <form fxLayout="column" *ngIf="loginInit" [formGroup]="loginForm" (submit)="loginForm.valid && login()" fxLayoutGap="16px" fxLayoutAlign="start center">
+    <mat-form-field *ngIf="!loading"> 
       <input matInput placeholder="Asmens kodas" type="number" formControlName="personalCode">
-      <mat-error>Šis laukelis privalomas</mat-error>
+      <mat-error>Neteisingas asmens kodas</mat-error>
     </mat-form-field>
-    <button class="login">
-      Prisijungti
+    <div class="smart-id" *ngIf="loading && verificationCode" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px">
+      <span>Jūsų kodas</span>
+      <span class="code">{{verificationCode}}</span>
+      <span>Prašome prisijungti su SMART-ID programėle</span>
+    </div>
+    <button class="login" [disabled]="!loginForm.valid" fxLayout="row" fxLayoutAlign="center center">
+      <span *ngIf="!loading; else spinner">
+        Prisijungti
+      </span>
+      <ng-template #spinner>
+        <mat-spinner mode="indeterminate" diameter="20"></mat-spinner>
+      </ng-template>
     </button>
   </form>
 </div>
