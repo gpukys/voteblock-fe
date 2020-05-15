@@ -1,20 +1,11 @@
 <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
-  <div *ngIf="poll; else spinner">
-    <h1>{{poll.question}}</h1>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <button mat-flat-button
-              (click)="vote(true)"
-              class="positive">
-        Taip
-      </button>
-      <button mat-flat-button
-              (click)="vote(false)"
-              class="negative">
-        Ne
-      </button>
-    </div>
+  <div fxLayout="column" fxLayoutGap="16px">
+    <h1>{{poll.name}}</h1>
+    <mat-radio-group fxLayout="column" fxLayoutGap="8px" [(ngModel)]="selectedChoice">
+      <mat-radio-button *ngFor="let choice of poll.choices" value="{{choice.id}}">{{choice.body}}</mat-radio-button>
+    </mat-radio-group>
+    <button mat-flat-button *ngIf="selectedChoice"
+            (click)="vote()"
+            color="primary">Balsuoti</button>
   </div>
-  <ng-template #spinner>
-    <mat-spinner></mat-spinner>
-  </ng-template>
 </div>

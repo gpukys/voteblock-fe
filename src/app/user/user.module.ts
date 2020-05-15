@@ -6,11 +6,15 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { PollsService } from './polls/polls.service';
 import { PollDetailComponent } from './poll-detail/poll-detail.component';
+import { AllPollsComponent } from './all-polls/all-polls.component';
+import { AdminComponent } from './admin/admin.component';
+import { RequestsComponent } from './requests/requests.component';
+import { PollResultsComponent } from './poll-results/poll-results.component';
 
 
 
 @NgModule({
-  declarations: [PollsComponent, UserComponent, PollDetailComponent],
+  declarations: [PollsComponent, UserComponent, PollDetailComponent, AllPollsComponent, AdminComponent, RequestsComponent, PollResultsComponent],
   imports: [
     CommonModule,
     SharedModule,

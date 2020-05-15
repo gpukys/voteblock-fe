@@ -2,6 +2,9 @@
 
 mat-sidenav {
   width: 200px;
+  mat-divider {
+    margin: 16px 0;
+  }
   .filler {
     height: 120px;
     background: $primary-color;
@@ -11,6 +14,7 @@ mat-sidenav {
     }
   }
   .navigation {
+    width: 100%;
     a {
       height: 45px;
       display: flex;

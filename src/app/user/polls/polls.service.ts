@@ -17,15 +17,15 @@ export class PollsService {
   }
 
   getActivePolls(): Observable<Poll[]> {
-    return this.http.get<Poll[]>(`${constants.url}active`);
+    return this.http.get<Poll[]>(`${constants.url}polls/status/STARTED`);
   }
 
   getPollById(id: string): Observable<Poll> {
     return this.http.get<Poll>(`${constants.url}${id}`);
   }
 
-  voteForPoll(pollId: string, votedYes: boolean) {
-    return this.http.post(`${constants.url}vote`, {pollId, votedYes});
+  voteForPoll(pollId: string, choiceId: string) {
+    return this.http.post(`${constants.url}polls/vote`, {pollId, choiceId});
   }
 
   createPoll(question: string) {
@@ -33,15 +33,55 @@ export class PollsService {
   }
 
   stopPoll(pollId: string) {
-    return this.http.post(`${constants.url}stop`, {pollId});
+    return this.http.post(`${constants.url}polls/stop`, {pollId});
+  }
+
+  validatePollChain(pollId: string) {
+    return this.http.post(`${constants.url}chain/user/${pollId}`, {});
+  }
+
+  getPollResultsRaw(pollId: string) {
+    return this.http.get(`${constants.url}polls/${pollId}/raw`);
+  }
+
+  getPollResults(pollId: string) {
+    return this.http.get(`${constants.url}polls/${pollId}/results`);
+  }
+
+  submitPollRequest(request: {name: string, choices: string[]}) {
+    return this.http.post(`${constants.url}requests/create`, request);
+  }
+
+  getPollRequests() {
+    return this.http.get(`${constants.url}requests/PENDING`);
+  }
+
+  approveRequest(requestId: string) {
+    return this.http.post(`${constants.url}requests/approve`, {requestId});
+  }
+
+  rejectRequest(requestId: string) {
+    return this.http.post(`${constants.url}requests/reject`, {requestId});
   }
 
 }
 
 export interface Poll {
   id: string;
-  question: string;
-  yes: number;
-  no: number;
-  running: boolean;
+  name: string;
+  requesterId: string;
+  status: PollStatus;
+  choices: PollChoices[];
+}
+
+export enum PollStatus {
+  notStarted = 'NOT_STARTED',
+  started = 'STARTED',
+  stopped = 'STOPPED'
+}
+
+export interface PollChoices {
+  body: string;
+  id: string;
+  pollId: string;
 }

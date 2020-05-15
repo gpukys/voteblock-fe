@@ -1,22 +1,23 @@
 <div class="main" fxLayout="column" fxLayoutAlign="center center" *ngIf="!selectedPoll; else pollDetail">
-  <h2>Aktyvūs balsavimai</h2>
+  <h2>Visi balsavimai</h2>
   <div class="container" fxLayout="column" fxLayoutGap="16px" *ngIf="activePolls?.length > 0; else noPolls">
     <mat-card *ngFor="let poll of activePolls" fxLayout="column"> 
       <mat-card-title>{{poll.name}}</mat-card-title>
       <div fxLayout="row" fxLayoutAlign="end center">
-        <button (click)="selectedPoll = poll" mat-flat-button color="primary">Balsuoti</button>
+        <button *ngIf="allowVote(poll.status)"(click)="selectedPoll = poll" mat-flat-button color="primary">Balsuoti</button>
+        <button *ngIf="!allowVote(poll.status)" [routerLink]="['../results/' + poll.id]"mat-flat-button color="accent">Rezultatai</button>
       </div>
     </mat-card>
   </div>
 </div>
 
 <ng-template #pollDetail>
-  <app-poll-detail [poll]="selectedPoll" (voteFinished)="selectedPoll = null"></app-poll-detail>
+  <app-poll-detail [poll]="selectedPoll"></app-poll-detail>
 </ng-template>
 
 <ng-template #noPolls>
   <div *ngIf="!loading; else spinner">
-    <h3>Šiuo metu nevyksta jokie balsavimai</h3>
+    <h3>Nerasti jokie balsavimai</h3>
   </div>
 </ng-template>
 

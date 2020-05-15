@@ -3,7 +3,7 @@
   <div *ngIf="!loginInit" fxLayout="row" fxLayoutAlign="center">
     <img src="./assets/smartid.png" alt="Smart Id" (click)="loginInit = true">
   </div>
-  <form fxLayout="column" *ngIf="loginInit" [formGroup]="loginForm" (submit)="loginForm.valid && login()" fxLayoutGap="16px" fxLayoutAlign="start center">
+  <form fxLayout="column" *ngIf="loginInit && !authComplete" [formGroup]="loginForm" (submit)="loginForm.valid && login()" fxLayoutGap="16px" fxLayoutAlign="start center">
     <mat-form-field *ngIf="!loading"> 
       <input matInput placeholder="Asmens kodas" type="number" formControlName="personalCode">
       <mat-error>Neteisingas asmens kodas</mat-error>
@@ -22,4 +22,9 @@
       </ng-template>
     </button>
   </form>
+  <div>
+    <div class="checkmark draw" *ngIf="authComplete">
+  
+    </div>
+  </div>
 </div>

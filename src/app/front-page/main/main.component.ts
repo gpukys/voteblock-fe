@@ -17,6 +17,8 @@ export class MainComponent {
   loading = false;
   verificationCode;
 
+  authComplete = false;
+
   constructor(
     private fb: FormBuilder,
     private notification: MatSnackBar,
@@ -35,7 +37,14 @@ export class MainComponent {
     this.authService.initSmartIdLogin(personalCode.value).subscribe(res => {
       this.verificationCode = res.verificationCode;
       const interval = setInterval(() => this.authService.pollSmartIdSession(res.sessionId).subscribe(res => {
-        console.log(res);
+        if (res.state === 'COMPLETE') {
+          this.authComplete = true;
+          this.authService.setCredentials(res.subject, res.authToken);
+          setTimeout(() => {
+            this.router.navigate(['/user/polls']);
+          }, 2000);
+          clearInterval(interval);
+        }
       }, err => {
         clearInterval(interval);
         this.notification.open('Įvyko klaida', undefined, {duration: 3000});

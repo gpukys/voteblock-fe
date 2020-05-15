@@ -3,7 +3,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule, MatCardModule, MatSpinner, MatDividerModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatInputModule, MatCardModule, MatSpinner, MatDividerModule, MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -21,7 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule
   ],
   exports: [
     MatSliderModule,
@@ -33,7 +34,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

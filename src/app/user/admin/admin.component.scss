@@ -1,0 +1,11 @@
+.main-container {
+  width: calc(100vw - 200px);
+}
+
+:host, .main {
+  width: 100%
+}
+
+.container {
+  width: 500px;
+}

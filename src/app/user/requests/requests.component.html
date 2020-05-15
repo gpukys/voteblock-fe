@@ -1,0 +1,21 @@
+<div style="width: calc(100vw - 200px)" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+  <h2>Naujo užsakymo kūrimas</h2>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" style="width: 300px;">
+      <mat-label>Balsavimo pavadinimas</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </form>
+    <button fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px" color="accent" mat-flat-button class="add-choice" (click)="choices.push({item: ''})"><mat-icon>add</mat-icon><span>Pridėti pasirinkimą</span></button>
+    <div fxLayout="column" fxLayoutGap="8px" class="choices">
+      <mat-form-field appearance="outline" *ngFor="let item of choices">
+        <input matInput [(ngModel)]="item.item" placeholder="Pasirinkimas">
+      </mat-form-field>
+    </div>
+  <button mat-flat-button
+          color="primary"
+          (click)="submitRequest()"
+          [disabled]="!form.valid || choices.length < 2">
+    Pateikti
+  </button>
+</div>

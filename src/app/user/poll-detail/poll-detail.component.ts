@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Poll, PollsService } from '../polls/polls.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -10,28 +10,24 @@ import { MatSnackBar } from '@angular/material';
 })
 export class PollDetailComponent implements OnInit {
 
-  poll: Poll;
+  @Input() poll: Poll;
+  @Output() voteFinished = new EventEmitter();
+
+  selectedChoice;
 
   constructor(
     private pollsService: PollsService,
-    private route: ActivatedRoute,
-    private router: Router,
     private notification: MatSnackBar
   ) {
-    this.route.paramMap.subscribe(res => {
-      this.pollsService.getPollById(res.get('id')).subscribe(poll => {
-        this.poll = poll;
-      });
-    });
   }
 
   ngOnInit() {
   }
 
-  vote(votedTrue: boolean) {
-    this.pollsService.voteForPoll(this.poll.id, votedTrue).subscribe(res => {
-      this.router.navigate(['user/polls']);
-      this.notification.open('Sėkmingai prabalsuota', undefined, {duration: 3000});
+  vote() {
+    this.pollsService.voteForPoll(this.poll.id, this.selectedChoice).subscribe(res => {
+      this.voteFinished.emit();
+      this.notification.open('Balsas sėkmingai užregistruotas', undefined, {duration: 3000});
     }, err => {
       this.notification.open('Įvyko klaida', undefined, {duration: 3000});
     });
