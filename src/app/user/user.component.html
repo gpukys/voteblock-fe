@@ -12,6 +12,9 @@
               <span>Administruoti balsavimus</span>
             </a>
             <a [routerLink]="['requests']" routerLinkActive="active" *ngIf="rights[user.role].requester">
+              <span>Sukurti užsakymą</span>
+            </a>
+            <a [routerLink]="['all-requests']" routerLinkActive="active" *ngIf="rights[user.role].requester">
               <span>Užsakymai</span>
             </a>
             <a [routerLink]="['polls']" routerLinkActive="active">

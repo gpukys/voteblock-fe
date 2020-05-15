@@ -1,3 +1,4 @@
+import { AllRequestsComponent } from './all-requests/all-requests.component';
 import { PollResultsComponent } from './poll-results/poll-results.component';
 import { RequestsComponent } from './requests/requests.component';
 import { RequesterGuard } from './requester.guard';
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'results/:id', component: PollResultsComponent},
       { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
       { path: 'requests', component: RequestsComponent, canActivate: [RequesterGuard] },
+      { path: 'all-requests', component: AllRequestsComponent, canActivate: [RequesterGuard] }
 
     ]
   }

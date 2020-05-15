@@ -1,0 +1,22 @@
+.container {
+  width: 500px;
+}
+.pill {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  &.warn {
+    background: rgb(197, 19, 19);
+    color: #fff;
+  }
+  &.waiting {
+    background: rgb(255, 209, 6);
+    color: #000;
+  }
+  &.accept {
+    background: rgb(33, 170, 33);
+    color: #fff;
+  }
+}

@@ -56,6 +56,10 @@ export class PollsService {
     return this.http.get(`${constants.url}requests/PENDING`);
   }
 
+  getAllPollRequests() {
+    return this.http.get(`${constants.url}users/52c2d2ee-f15f-46e1-befa-96a2c27e565a/requests`);
+  }
+
   approveRequest(requestId: string) {
     return this.http.post(`${constants.url}requests/approve`, {requestId});
   }

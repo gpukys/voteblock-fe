@@ -1,0 +1,24 @@
+<div class="main" style="width: calc(100vw - 200px)" fxLayout="column" fxLayoutAlign="center center">
+  <h2>Balsavimų užsakymai</h2>
+  <div class="container" fxLayout="column" fxLayoutGap="16px" *ngIf="requests?.length > 0; else noRequests">
+    <mat-card *ngFor="let request of requests" fxLayout="column" fxLayoutGap="16px"> 
+      <mat-card-title>{{request.name}}</mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutGap="6px">
+          <span *ngFor="let item of request.choices">{{item}}</span>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <div class="pill {{requestStatus[request.status].class}}">
+          {{requestStatus[request.status].text}}
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div>
+    <h3>Šiuo metu nepateikti jokie užsakymai</h3>
+  </div>
+</ng-template>
